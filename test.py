@@ -22,7 +22,12 @@ parser.add_argument('--visualize', action='store_true')
 parser.add_argument('--save_dir', 
                     type=str,
                     help="Path of the directory to save the visualized results")
-
+parser.add_argument('--inference_only', action='store_true')
+parser.add_argument('--test_split', action='store_true')
+parser.add_argument('--txt_dir',
+                    type=str,
+                    help='Path of the directory to ssave the inferenced results', default=None)
+parser.add_argument('--single_file', action='store_true', help="If True, save the result of all frames as a single txt file.")
 args = parser.parse_args()
 
 
@@ -37,6 +42,8 @@ if torch_version >= 7:
 cfg = load_cfg(args.config_file)
 cfg.GPU_ID = args.gpu_id
 
+if args.test_split:
+    cfg.DATA.TEST_SPLIT = 'test'
 
 # Set Benchmark
 # If this is set to True, it may consume more memory. (Default: True)
@@ -62,7 +69,7 @@ engine.load_checkpoint(args.checkpoint_file, verbose=True)
 # Evaluate
 if args.evaluate:
     tprint("Mode: Evaluation")
-    engine.evaluate()
+    engine.evaluate(get_metrics=not args.inference_only, save_dir=args.txt_dir, single_file=args.single_file)
 
 
 # Visualize
