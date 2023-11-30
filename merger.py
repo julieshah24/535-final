@@ -46,7 +46,10 @@ merged_contents = "\n".join(file_contents)
 
 # Write the concatenated string to a new file
 save_path = args.save_path
+print(save_path)
+print(os.path)
 if not os.path.exists(os.path.dirname(save_path)):
+    print(os.path.dirname(save_path))
     os.makedirs(os.path.dirname(save_path))
 with open(save_path, "w") as f:
     f.write(merged_contents)

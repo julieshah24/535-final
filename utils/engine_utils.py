@@ -42,7 +42,7 @@ def get_default_cfg() -> CfgNode:
 def load_cfg(cfg_file: str) -> CfgNode:
     cfg_ = get_default_cfg()
     cfg_.set_new_allowed(True)
-    cfg_.merge_from_file(cfg_file)
+    #cfg_.merge_from_file(cfg_file)
     return cfg_
 
 

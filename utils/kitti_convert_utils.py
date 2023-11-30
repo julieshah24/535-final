@@ -215,9 +215,10 @@ def kitti_3d_to_file(annos: Dict[str, List[Dict]], img_metas: Dict, folder: str,
     img_metas: a dictionary containing the meta information of the mini batch, output from MonoConDataset.
     single_file: whether to write the detection results of all frames to a single file.
     """
-    annos = annos['img_bbox']
+    #annos = annos['img_bbox']
     
     if single_file:
+        print("hello", folder)
         if not os.path.exists(os.path.dirname(folder)):
             os.makedirs(os.path.dirname(folder))
     else:
@@ -278,6 +279,7 @@ def kitti_3d_to_file(annos: Dict[str, List[Dict]], img_metas: Dict, folder: str,
     if single_file:
         f.close()
     return
+
 
 def convert_to_kitti_3d(results_3d: List[Dict[str, torch.Tensor]],
                         img_metas: Dict[str, Any],
