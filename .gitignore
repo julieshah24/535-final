@@ -6,3 +6,8 @@ checkpoint/
 *.pth
 dataset/debug_tools.py
 debugger/
+training/
+testing/
+.DS_Store
+dataset/.DS_Store
+model/.DS_Store
